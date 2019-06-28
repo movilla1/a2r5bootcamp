@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+.main {
+  background-color: #303033;
+}
+.footer {
+  background-color: #FFF;
+}
+.container-fluid {
+  background-color: #fff;
+  width: 80%
+}

@@ -1,0 +1,142 @@
+<h1>Create Proposal</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <form #proposalForm="ngForm">
+        <div class="form-group">
+          <label for="customer">Customer Name: </label>
+          <input 
+            type="text"
+            id="customer"
+            placeholder="ABC Company"
+            required
+            name="customer"
+            #customer="ngModel"
+            [(ngModel)]="proposal.customer"
+            class="form-control"
+          />
+          <div [hidden]="customer.valid || customer.pristine" class="text-danger">
+            Customer name is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="portfolioUrl">Portfolio Url: </label>
+          <input 
+            type="text"
+            id="portfolioUrl"
+            placeholder="http://www."
+            required
+            name="portfolioUrl"
+            #portfolioUrl="ngModel"
+            [(ngModel)]="proposal.portfolioUrl"
+            class="form-control"
+          />
+          <div [hidden]="portfolioUrl.valid || portfolioUrl.pristine" class="text-danger">
+              Portfolio url is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tools">Tools: </label>
+          <input 
+            type="text"
+            id="tools"
+            placeholder="Python and Bash"
+            required
+            name="tools"
+            #tools="ngModel"
+            [(ngModel)]="proposal.tools"
+            class="form-control"
+          />
+          <div [hidden]="tools.valid || tools.pristine" class="text-danger">
+              Tools list is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="estimatedHours">Estimated Hours: </label>
+          <input 
+            type="number"
+            id="estimatedHours"
+            required
+            name="estimatedHours"
+            #estimatedHours="ngModel"
+            [(ngModel)]="proposal.estimatedHours"
+            class="form-control"
+          />
+          <div [hidden]="estimatedHours.valid || estimatedHours.pristine" class="text-danger">
+            Your time estimation is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="hourlyRate">Hourly Rate: </label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input
+              type="number"
+              id="hourlyRate"
+              required
+              name="hourlyRate"
+              #hourlyRate="ngModel"
+              [(ngModel)]="proposal.hourlyRate"
+              class="form-control"
+            />
+          </div>
+          <div [hidden]="hourlyRate.valid || hourlyRate.pristine" class="text-danger">
+            Please enter your hourly rate
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="weeksToComplete">Weeks To complete: </label>
+          <input
+            type="number"
+            id="weeksToComplete"
+            required
+            name="weeksToComplete"
+            #weeksToComplete="ngModel"
+            [(ngModel)]="proposal.weeksToComplete"
+            class="form-control"
+          />
+          <div [hidden]="weeksToComplete.valid || weeksToComplete.pristine" class="text-danger">
+            Estimated weeks to complete is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="clientEmail">Client e-mail: </label>
+          <input 
+            type="email"
+            id="clientEmail"
+            name="clientEmail"
+            #clientEmail="ngModel"
+            [(ngModel)]="proposal.clientEmail"
+            class="form-control"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="col-1">&nbsp;</div>
+    <div class="col-6">
+      <p>Hi {{ proposal.customer }},</p>
+
+      <p>It was a pleasure getting to meet with you and review your project requirements, I believe it is 
+        a great fit for the types of applications that I build out. Please feel free to check out some of 
+        my past projects <a href="{{proposal.portfolioUrl}}">here</a>.</p>
+
+      <p>To successfully build out the application I will be utilizing {{ proposal.tools }}, and a number of 
+        other tools to ensure that the project follows industry wide best practices.</p>
+
+      <p>Ensuring that you are fully informed is one of my top priorities, so in addition to incorporating 
+        everything that we discussed, I will also be creating a project management dashboard and sending you a
+        project update message daily so that you can have a transparent view of the development as it takes place.</p>
+
+      <p>To accomplish the project and meet the requirements that we discussed, I am estimating that it will take 
+        {{ proposal.estimatedHours }} hours in development time to complete. The project should take
+        {{ proposal.weeksToComplete }} weeks to complete and with my hourly rate of {{ proposal.hourlyRate | currency }}/hour,
+        the estimated total will be {{ proposal.hourlyRate * proposal.estimatedHours | currency}}.</p>
+
+      <p>The next step from here is to set up a meeting to finalize the project and sign contracts.</p>
+
+      <p>I am excited to working with you and build out this project.</p>
+    </div>
+  </div>
+</div>

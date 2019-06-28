@@ -1,0 +1,25 @@
+<h1>Proposals List</h1>
+<div class="card">
+  <div class="row card-header">
+    <div class="col-1">ID</div>
+    <div class="col-3">Customer</div>
+    <div class="col-3">Portfolio URL</div>
+    <div class="col-1">Estimate</div>
+  </div>
+  <div class="card-body">
+    <div class="row" *ngFor="let proposal of proposals">
+      <div class="col-1">
+        {{proposal.id}}
+      </div>
+      <div class="col-3">
+        <a routerLink="/proposal/{{proposal.id}}">{{proposal.customer}}</a>
+      </div>
+      <div class="col-3">
+        {{proposal.portfolioUrl}}
+      </div>
+      <div class="col-1">
+        {{proposal.estimatedHours * proposal.hourlyRate | currency}}
+      </div>
+    </div>
+  </div>
+</div>

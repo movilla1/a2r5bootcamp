@@ -1,0 +1,17 @@
+body {
+  background-color: #505050;
+}
+
+.main-frame {
+  background-color: #FCFCFC;
+  display: inline-block;
+}
+.page-header {
+  width: 90%;
+  padding-left: 20pt;
+  margin: auto;
+  text-align: left;
+}
+.page-header h2 {
+  border-bottom: 1px solid black;
+}
