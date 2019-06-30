@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4">
-      <form #proposalForm="ngForm">
+      <form #proposalForm="ngForm" (ngSubmit)="createProposal(proposal)">
         <div class="form-group">
           <label for="customer">Customer Name: </label>
           <input 
@@ -20,18 +20,18 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="portfolioUrl">Portfolio Url: </label>
+          <label for="portfolio_url">Portfolio Url: </label>
           <input 
             type="text"
-            id="portfolioUrl"
+            id="portfolio_url"
             placeholder="http://www."
             required
-            name="portfolioUrl"
-            #portfolioUrl="ngModel"
-            [(ngModel)]="proposal.portfolioUrl"
+            name="portfolio_url"
+            #portfolio_url="ngModel"
+            [(ngModel)]="proposal.portfolio_url"
             class="form-control"
           />
-          <div [hidden]="portfolioUrl.valid || portfolioUrl.pristine" class="text-danger">
+          <div [hidden]="portfolio_url.valid || portfolio_url.pristine" class="text-danger">
               Portfolio url is required
           </div>
         </div>
@@ -52,65 +52,80 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="estimatedHours">Estimated Hours: </label>
+          <label for="estimated_hours">Estimated Hours: </label>
           <input 
             type="number"
-            id="estimatedHours"
+            id="estimated_hours"
             required
-            name="estimatedHours"
-            #estimatedHours="ngModel"
-            [(ngModel)]="proposal.estimatedHours"
+            name="estimated_hours"
+            #estimated_hours="ngModel"
+            [(ngModel)]="proposal.estimated_hours"
             class="form-control"
           />
-          <div [hidden]="estimatedHours.valid || estimatedHours.pristine" class="text-danger">
+          <div [hidden]="estimated_hours.valid || estimated_hours.pristine" class="text-danger">
             Your time estimation is required
           </div>
         </div>
         <div class="form-group">
-          <label for="hourlyRate">Hourly Rate: </label>
+          <label for="hourly_rate">Hourly Rate: </label>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">$</span>
             </div>
             <input
               type="number"
-              id="hourlyRate"
+              id="hourly_rate"
               required
-              name="hourlyRate"
-              #hourlyRate="ngModel"
-              [(ngModel)]="proposal.hourlyRate"
+              name="hourly_rate"
+              #hourly_rate="ngModel"
+              [(ngModel)]="proposal.hourly_rate"
               class="form-control"
             />
           </div>
-          <div [hidden]="hourlyRate.valid || hourlyRate.pristine" class="text-danger">
+          <div [hidden]="hourly_rate.valid || hourly_rate.pristine" class="text-danger">
             Please enter your hourly rate
           </div>
         </div>
         <div class="form-group">
-          <label for="weeksToComplete">Weeks To complete: </label>
+          <label for="weeks_to_complete">Weeks To complete: </label>
           <input
             type="number"
-            id="weeksToComplete"
+            id="weeks_to_complete"
             required
-            name="weeksToComplete"
-            #weeksToComplete="ngModel"
-            [(ngModel)]="proposal.weeksToComplete"
+            name="weeks_to_complete"
+            #weeks_to_complete="ngModel"
+            [(ngModel)]="proposal.weeks_to_complete"
             class="form-control"
           />
-          <div [hidden]="weeksToComplete.valid || weeksToComplete.pristine" class="text-danger">
+          <div [hidden]="weeks_to_complete.valid || weeks_to_complete.pristine" class="text-danger">
             Estimated weeks to complete is required
           </div>
         </div>
         <div class="form-group">
-          <label for="clientEmail">Client e-mail: </label>
+          <label for="client_email">Client e-mail: </label>
           <input 
             type="email"
-            id="clientEmail"
-            name="clientEmail"
-            #clientEmail="ngModel"
-            [(ngModel)]="proposal.clientEmail"
+            id="client_email"
+            name="client_email"
+            #client_email="ngModel"
+            [(ngModel)]="proposal.client_email"
             class="form-control"
           />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!proposalForm.form.valid"
+          [hidden]="submitted"
+        >
+          Generate Proposal
+        </button>
+        <div
+          class="alert alert-success"
+          role="alert"
+          [hidden]="!submitted"
+          >
+          Your proposal has been generated <a class="alert-link" routerLink="/proposals">Back to list</a>
         </div>
       </form>
     </div>
@@ -120,7 +135,7 @@
 
       <p>It was a pleasure getting to meet with you and review your project requirements, I believe it is 
         a great fit for the types of applications that I build out. Please feel free to check out some of 
-        my past projects <a href="{{proposal.portfolioUrl}}">here</a>.</p>
+        my past projects <a href="{{proposal.portfolio_url}}">here</a>.</p>
 
       <p>To successfully build out the application I will be utilizing {{ proposal.tools }}, and a number of 
         other tools to ensure that the project follows industry wide best practices.</p>
@@ -130,9 +145,9 @@
         project update message daily so that you can have a transparent view of the development as it takes place.</p>
 
       <p>To accomplish the project and meet the requirements that we discussed, I am estimating that it will take 
-        {{ proposal.estimatedHours }} hours in development time to complete. The project should take
-        {{ proposal.weeksToComplete }} weeks to complete and with my hourly rate of {{ proposal.hourlyRate | currency }}/hour,
-        the estimated total will be {{ proposal.hourlyRate * proposal.estimatedHours | currency}}.</p>
+        {{ proposal.estimated_hours }} hours in development time to complete. The project should take
+        {{ proposal.weeks_to_complete }} weeks to complete and with my hourly rate of {{ proposal.hourly_rate | currency }}/hour,
+        the estimated total will be {{ proposal.hourly_rate * proposal.estimated_hours | currency}}.</p>
 
       <p>The next step from here is to set up a meeting to finalize the project and sign contracts.</p>
 

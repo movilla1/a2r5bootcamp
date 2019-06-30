@@ -1,13 +1,13 @@
 <h2>{{pageTitle}}</h2>
 <div class="container">
   <div class="card my-2" *ngFor="let doc of documents">
-    <div class="card-img-top text-center py-2"><img src="{{doc.image_url}}" width="400"/></div>
+    <div class="card-img-top text-center py-2"><img src="{{doc.attributes.imageUrl}}" width="400"/></div>
     <div class="card-body">
-      <h4 class="card-title">{{doc.title}}</h4>
+      <h4 class="card-title">{{doc.attributes.title}}</h4>
       <div class="card-text">
-        {{doc.description}}
+        {{doc.attributes.description}}
       </div>
-      <footer class="blockquote-footer">Created at: {{doc.updated_at}}</footer>
+      <footer class="blockquote-footer">Created at: {{doc.attributes.updatedAt | date}}</footer>
     </div>
   </div>
 </div>
